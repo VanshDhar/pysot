@@ -28,8 +28,8 @@ from pysot.utils.distributed import dist_init, DistModule, reduce_gradients,\
 from pysot.utils.model_load import load_pretrain, restore_from
 from pysot.utils.average_meter import AverageMeter
 from pysot.utils.misc import describe, commit
-from pysot.models.model_builder import ModelBuilder
-from pysot.datasets.dataset import TrkDataset
+from pysot.models.model_builder_temp import ModelBuilder #changed
+from pysot.datasets.dataset_terminal import TrkDataset#changed
 from pysot.core.config import cfg
 
 
@@ -104,6 +104,10 @@ def build_opt_lr(model, current_epoch=0):
     if cfg.REFINE.REFINE:
         trainable_params += [{'params': model.refine_head.parameters(),
                               'lr': cfg.TRAIN.LR.BASE_LR}]
+
+    if cfg.TEMPORAL.TEMPORAL:#changed
+        trainable_params += [{'params': model.temporal_head.parameters(),
+                              'lr': cfg.TRAIN.BASE_LR}]
 
     optimizer = torch.optim.SGD(trainable_params,
                                 momentum=cfg.TRAIN.MOMENTUM,
