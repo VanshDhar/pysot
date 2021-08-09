@@ -51,13 +51,13 @@ __C.TRAIN.PRETRAINED = ''
 
 __C.TRAIN.LOG_DIR = './logs'
 
-__C.TRAIN.SNAPSHOT_DIR = './snapshot'
+__C.TRAIN.SNAPSHOT_DIR = './snapshot_temporal'
 
 __C.TRAIN.EPOCH = 20
 
 __C.TRAIN.START_EPOCH = 0
 
-__C.TRAIN.BATCH_SIZE = 32
+__C.TRAIN.BATCH_SIZE = 8#changed from 32
 
 __C.TRAIN.NUM_WORKERS = 1
 
@@ -135,7 +135,7 @@ __C.DATASET.NEG = 0.2
 # improve tracking performance for otb100
 __C.DATASET.GRAY = 0.0
 
-__C.DATASET.NAMES = ('VID', 'COCO', 'DET', 'YOUTUBEBB')
+__C.DATASET.NAMES = ['VID'] #('VID', 'COCO', 'DET', 'YOUTUBEBB')
 
 __C.DATASET.VID = CN()
 __C.DATASET.VID.ROOT = 'training_dataset/vid/crop511'
@@ -196,6 +196,19 @@ __C.ADJUST.KWARGS = CN(new_allowed=True)
 
 # Adjust layer type
 __C.ADJUST.TYPE = "AdjustAllLayer"
+
+# ------------------------------------------------------------------------ #
+# Temporal layer options
+# ------------------------------------------------------------------------ #
+__C.TEMPORAL = CN()
+
+# Temporal layer
+__C.TEMPORAL.TEMPORAL = True
+
+__C.TEMPORAL.KWARGS = CN(new_allowed=True)
+
+# Temporal layer type
+__C.TEMPORAL.TYPE = "TemporalNET"
 
 # ------------------------------------------------------------------------ #
 # RPN options
