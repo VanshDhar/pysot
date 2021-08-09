@@ -23,6 +23,10 @@ RPN:
         in_channels: [256, 256, 256]
         weighted: true
 
+TEMPORAL:
+    TEMPORAL: true
+    TYPE: 'TemporalNET'
+
 MASK:
     MASK: false
 
@@ -45,7 +49,8 @@ TRACK:
 TRAIN:
     EPOCH: 20
     START_EPOCH: 0
-    BATCH_SIZE: 28
+    BATCH_SIZE: 8 
+    #changed from 28
     BASE_LR: 0.005
     CLS_WEIGHT: 1.0
     LOC_WEIGHT: 1.2
@@ -67,9 +72,9 @@ TRAIN:
 DATASET:
     NAMES: 
     - 'VID'
-    - 'YOUTUBEBB'
-    - 'COCO'
-    - 'DET'
+      # - 'YOUTUBEBB'
+      # - 'COCO'
+      # - 'DET'
 
     TEMPLATE:
         SHIFT: 4
